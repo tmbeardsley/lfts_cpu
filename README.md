@@ -24,4 +24,4 @@ n_eq is the number of langevin steps performed to equilibrate the system (intege
 n_st is the number of langevin steps performed after equilibration has ended, during which statistics are sampled (integer).<br>
 n_smpl is the number of steps between samples taken in the statistics period (integer).<br>
 loadType instructs the program whether to load the W-(r) and w+(r) fields from the proceeding file lines (loadType=1), start from a disordered state (loadType=0) or start from a (300) lamellar phase (loadType=2).<br><br>
-M = (mx x my x mz) is the total number of mesh points, such that the proceeding 2*M lines of the file can hold W-(r) and w+(r) fields to load.
+M = (mx\*my\*mz) is the total number of mesh points, such that the proceeding 2*M lines of the file can hold W-(r) and w+(r) fields to load.
