@@ -1,7 +1,7 @@
 # lfts_cpu
 Langevin Field-Theoretic Simulations (L-FTS) of Diblock Copolymers on CPUs
 
-See https://tbeardsley.com/projects/lfts/fts_gpu for a detailed discussion of this project.
+See https://tbeardsley.com/projects/lfts/fts_gpu for a detailed discussion of this project.<br>
 A GPU-accelerated version of this code can be found at: https://github.com/tmbeardsley/lfts_gpu.
 
 Input file format:<br>
