@@ -2,12 +2,14 @@
 
 See https://www.tbeardsley.com/projects/lfts/fts_gpu for a detailed discussion of this project.<br>
 
-<b>Required Dependencies:</b><br>
+<u><b>Required Dependencies:</b></u><br>
 GSL - GNU Scientific Library (https://www.gnu.org/software/gsl/)<br>
 FFTW3 Fast Fourier Transform Library (https://www.fftw.org/)<br>
 
+<u><b>Compiling:</b></u><br>
+Two methods of compiling the program are available:
 <b>comp.sh:</b><br>
-An example compile script
+A simple bash script to compile the .
 
 <b>Running the program:</b><br>
 ./<program_name> <input_file_name><br>
