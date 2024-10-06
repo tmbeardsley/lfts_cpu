@@ -1,5 +1,4 @@
-# lfts_cpu
-Langevin Field-Theoretic Simulation of Diblock Copolymers on CPUs
+# Langevin Field-Theoretic Simulation of Diblock Copolymers on CPUs
 
 See https://www.tbeardsley.com/projects/lfts/fts_gpu for a detailed discussion of this project.<br>
 
