@@ -3,6 +3,10 @@ Langevin Field-Theoretic Simulation of Diblock Copolymers on CPUs
 
 See https://www.tbeardsley.com/projects/lfts/fts_gpu for a detailed discussion of this project.<br>
 
+<b>Required Dependencies:</b><br>
+GSL - GNU Scientific Library (https://www.gnu.org/software/gsl/)
+FFTW3 Fast Fourier Transform Library (https://www.fftw.org/)
+
 <b>comp.sh:</b><br>
 An example compile script
 
