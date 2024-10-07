@@ -18,9 +18,9 @@ message(STATUS "GSL_INCLUDE_DIRS = ${GSL_INCLUDE_DIRS}")
 message(STATUS "GSL_LDFLAGS = ${GSL_LDFLAGS}")
 include_directories(${GSL_INCLUDE_DIRS})
 
-# Use find_package to find and check for the gsl library.
+# Use find_package to find and check for the FFTW3 library.
 # The REQUIRED keyword makes sure the build process stops if the library is not found.
-# Variables GSL_INCLUDE_DIRS and GSL_LDFLAGS are created here.
+# Variables FFTW3_INCLUDE_DIRS and FFTW3_LIBRARIES are created here.
 find_package(FFTW3 REQUIRED)
 message(STATUS "FFTW3_INCLUDE_DIRS = ${FFTW3_INCLUDE_DIRS}")
 message(STATUS "FFTW3_LIBRARIES = ${FFTW3_LIBRARIES}")
