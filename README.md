@@ -1,3 +1,4 @@
+![Build Status](https://github.com/tmbeardsley/lfts_cpu/actions/workflows/build_and_test.yml/badge.svg)
 # Langevin Field-Theoretic Simulation of Diblock Copolymers on CPUs
 
 See https://www.tbeardsley.com/projects/lfts/fts_gpu for a detailed discussion of this project.<br>

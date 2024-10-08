@@ -1,0 +1,39 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:    # Allows workflow to be run manually from GitHub
+
+
+env:
+  # Can change the CMake build type here (e.g., Release, Debug)
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+      # Install FFTW3 library
+    - name: Install FFTW3
+      run: sudo apt-get update && sudo apt-get install -y libfftw3-dev
+
+    - name: Configure CMake
+      # Configure CMake in a 'build' subdirectory.
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+
+    - name: Build
+      # Build your program with the given configuration
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+
+    - name: Test
+      working-directory: ${{github.workspace}}/build
+      # Execute tests defined by the CMake configuration.
+      run: ctest -C ${{env.BUILD_TYPE}}
+
