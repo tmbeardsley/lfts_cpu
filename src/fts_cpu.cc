@@ -21,9 +21,6 @@ int main (int argc, char *argv[])
     }
     string inputFile(argv[1]);
 
-
-    cout << "Test message" << endl;
-
     // New lfts_simulation object with input file name specified
     lfts_simulation *lfts_sim = new lfts_simulation(inputFile);
     
