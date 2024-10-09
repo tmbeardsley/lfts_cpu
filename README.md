@@ -61,8 +61,15 @@ Note: A real-space position r = (x,y,z) corresponds to a mesh point position r_m
 M = (mx\*my\*mz) is the total number of mesh points, such that the proceeding 2*M lines of the file can hold W-(r) and w+(r) fields to load.
 
 ## Output files:
-"w_eq_<step_number>": The state of the W-(r) and w+(r) fields at simulation step number <step_number> during the equilibration period. First three lines are simulation parameters so it can be used as an input file.<br>
-"w_st_<step_number>": The state of the W-(r) and w+(r) fields at simulation step number <step_number> during the statistics gathering period. First three lines are simulation parameters so it can be used as an input file.<br>
-"phi_eq_<step_number>": The state of the phi-(r) and phi+(r) fields at simulation step number <step_number> during the equilibration period.<br>
-"phi_eq_<step_number>": The state of the phi-(r) and phi+(r) fields at simulation step number <step_number> during the statistics gathering period.<br>
+#### w_eq_<step_number>
+The state of the W-(r) and w+(r) fields at simulation step number <step_number> during the equilibration period. First three lines are simulation parameters so it can be used as an input file.<br>
+
+#### w_st_<step_number>
+The state of the W-(r) and w+(r) fields at simulation step number <step_number> during the statistics gathering period. First three lines are simulation parameters so it can be used as an input file.<br>
+
+#### phi_eq_<step_number>
+The state of the phi-(r) and phi+(r) fields at simulation step number <step_number> during the equilibration period.<br>
+
+#### phi_eq_<step_number>
+The state of the phi-(r) and phi+(r) fields at simulation step number <step_number> during the statistics gathering period.<br>
 
