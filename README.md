@@ -30,7 +30,7 @@ Two methods of compiling the program are available:<br>
 ## Running the program
 After compilation the executable file, lfts-cpu, resides in the 'build' directory. An input file must be supplied to the executable at the command line, examples of which are contained in the 'input_files' folder. 
 For example, from the top level of the directory tree, the program could be run via: <br><br>
-<b>./build/lfts-gpu ./input_files/input</b>
+<b>./build/lfts-cpu ./input_files/input</b>
 
 
 ## Input Files
