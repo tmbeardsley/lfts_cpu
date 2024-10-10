@@ -46,20 +46,22 @@ Lines (M+4)->(2M+3): w+(r)<br>
 Note: A real-space position r = (x,y,z) corresponds to a mesh point position r_m = (i,j,k), where i=0->mx-1, j=0->my-1 and k=0->mz-1 are integers. The elements of the fields, W-(r) and w+(r), are then written in ascending order of the row-major index: p = mx\*(i\*my+j)+k.
 
 #### Parameter descriptions:
-<em>N</em> is the number of monomers in a single polymer chain (integer).<br>
-<em>NA</em> is the number of monomers in the A-block of a polymer chain (integer).<br>
-<em>XN</em> is the interaction strength between A and B-type monomers (double).<br>
-<em>C</em> is the square root of the invariant polymerisation index, Nbar (double).<br>
-<em>Ndt</em> is the size of the time step in the Langevin update of W-(r) (double).<br>
-<em>isXeN</em> instructs the program whether the parameter XN is in terms of bare (isXeN=0) or effective (isXeN=1) chi (integer).<br>
-<em>mx, my, mz</em> are the number of mesh points in the x, y, and z dimensions of the simulation box (integers).<br>
-<em>Lx, Ly, Lz</em> are the dimensions of the simulation box (in units of the polymer end-to-end length, R0) in the x, y, and z dimensions (doubles).<br>
-<em>n_eq</em> is the number of langevin steps performed to equilibrate the system (integer).<br>
-<em>n_st</em> is the number of langevin steps performed after equilibration has ended, during which statistics are sampled (integer).<br>
-<em>n_smpl</em> is the number of steps between samples being taken in the statistics period (integer).<br>
-<em>save_freq</em> is the number of steps between saving outputs to file.<br>
-<em>loadType</em> instructs the program whether to load the W-(r) and w+(r) fields from the proceeding file lines (loadType=1), start from a disordered state (loadType=0) or start from a (300) lamellar phase (loadType=2).<br><br>
-M = (mx\*my\*mz) is the total number of mesh points, such that the proceeding 2*M lines of the file can hold W-(r) and w+(r) fields to load.
+| Parameter | Description |
+| :---: | --- |
+| <em>N</em> | number of monomers in a single polymer chain (integer) |
+| <em>NA</em> | number of monomers in the A-block of a polymer chain (integer) |
+| <em>XN</em> | interaction strength between A and B-type monomers (double) |
+| <em>C</em> | square root of the invariant polymerisation index, Nbar (double) |
+| <em>Ndt</em> | size of the time step in the Langevin update of W-(r) (double) |
+| <em>isXeN</em> | whether the parameter XN is in terms of bare (isXeN=0) or effective (isXeN=1) chi (integer) |
+| <em>mx, my, mz</em> | number of mesh points in the x, y, and z dimensions of the simulation box (integers) |
+| <em>Lx, Ly, Lz</em> | dimensions of the simulation box (in units of the polymer end-to-end length, R0) in the x, y, and z dimensions (doubles) |
+| <em>n_eq</em> | number of langevin steps performed to equilibrate the system (integer) |
+| <em>n_st</em> | number of langevin steps performed after equilibration has ended, during which statistics are sampled (integer) |
+| <em>n_smpl</em> | number of steps between samples being taken in the statistics period (integer) |
+| <em>save_freq</em> | number of steps between saving outputs to file |
+| <em>loadType</em> | whether to load the W-(r) and w+(r) fields from the proceeding file lines (loadType=1), start from a disordered state (loadType=0) or start from a (300) lamellar phase (loadType=2) |
+| M | Total number of mesh points (M= mx\*my\*mz), such that the proceeding 2*M lines of the file can hold the W-(r) and w+(r) fields that are to be loaded |
 
 ## Output files:
 #### w_eq_<step_number>
