@@ -47,7 +47,7 @@ Lines (M+4)->(2M+3): w+(r)<br>
 Note: A real-space position r = (x,y,z) corresponds to a mesh point position r_m = (i,j,k), where i=0->mx-1, j=0->my-1 and k=0->mz-1 are integers. The elements of the fields, W-(r) and w+(r), are then written in ascending order of the row-major index: p = mx\*(i\*my+j)+k.
 
 #### Parameter descriptions
-| Parameter | Description |
+| Parameter | Type | Description |
 | :---: | :---: | --- |
 | <em>N</em> | Integer | number of monomers in a single polymer chain |
 | <em>NA</em> | Integer | number of monomers in the A-block of a polymer chain |
