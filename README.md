@@ -1,14 +1,14 @@
 ![Build Status](https://github.com/tmbeardsley/lfts_cpu/actions/workflows/build_and_test.yml/badge.svg)
 # Langevin Field-Theoretic Simulation of Diblock Copolymers on CPUs
 
-## Description
+## 1. Description
 See https://www.tbeardsley.com/projects/lfts/fts_gpu for a detailed discussion of this project.<br>
 
-## Required Dependencies
+## 2. Required Dependencies
 GSL - GNU Scientific Library (https://www.gnu.org/software/gsl/)<br>
 FFTW3 Fast Fourier Transform Library (https://www.fftw.org/)<br>
 
-## Compiling
+## 3. Compiling
 Two methods of compiling the program are available:<br>
 <ol>
   <li><b>comp.sh</b>
@@ -28,16 +28,16 @@ Two methods of compiling the program are available:<br>
 </ol>
 
 
-## Running the program
+## 4. Running the program
 After compilation the executable file, lfts-cpu, resides in the 'build' directory. An input file must be supplied to the executable at the command line, examples of which are contained in the 'input_files' folder. 
 For example, from the top level of the directory tree, the program could be run via: <br><br>
 <b>./build/lfts-cpu ./input_files/input</b>
 
 
-## Input Files
+## 5. Input Files
 The input_files directory contains example input files that can be supplied to the program from the command line.
 
-### Input file format
+### 5a. Input file format
 Line 1: <em>N NA XN C Ndt isXeN</em><br>
 Line 2: <em>mx my mz Lx Ly Lz</em><br>
 Line 3: <em>n_eq n_st n_smpl save_freq loadType</em><br>
@@ -64,7 +64,7 @@ Note: A real-space position r = (x,y,z) corresponds to a mesh point position r_m
 | <em>loadType</em> | Integer | Whether to load the W-(r) and w+(r) fields from the proceeding file lines (loadType=1), start from a disordered state (loadType=0) or start from a (300) lamellar phase (loadType=2) |
 | M | Integer | Total number of mesh points (M= mx\*my\*mz), such that the proceeding 2*M lines of the file can hold the W-(r) and w+(r) fields that are to be loaded |
 
-## Output files
+## 6. Output files
 #### w_eq_<step_number>
 The state of the W-(r) and w+(r) fields at simulation step number <step_number> during the equilibration period. First three lines are simulation parameters so it can be used as an input file.<br>
 
@@ -74,6 +74,15 @@ The state of the W-(r) and w+(r) fields at simulation step number <step_number> 
 #### phi_eq_<step_number>
 The state of the phi-(r) and phi+(r) fields at simulation step number <step_number> during the equilibration period.<br>
 
-#### phi_eq_<step_number>
+#### phi_st_<step_number>
 The state of the phi-(r) and phi+(r) fields at simulation step number <step_number> during the statistics gathering period.<br>
 
+## 7. Visualisation Script
+The tools folder in the root directory contains a simple script for taking the first <em>M</em> lines of a w_<..>_<step_number> or phi_<..>_<step_number> output file from the simulation, and creating a .vtk file that can be loaded into <a href="https://www.paraview.org" target="_blank">Paraview</a> for visualisation as a volume plot. Note that the first <em>M</em> lines are used as they correspond to the W-(r) or phi-(r) fields, which are usually the ones of interest. The script could easily be edited to use lines <em>M</em>+1 to 2<em>M</em> in order to plot w+(r) or phi+(r) instead.
+
+### 7a. How to use make_vtk.sh
+The script can be run from the command line as follows:<br><br>
+<b>sh make_vtk.sh \<path_to_file_to_visualise\> \<mx\> \<my\> \<mz\></b>
+<br><br>
+where <em>mx</em>, <em>my</em> and <em>mz</em> are the number of grid points in the x, y and z-dimensions of the file being visualised. 
+The script's output file name will be the same as \<path_to_file_to_visualise\>, but with a .vtk extension.
