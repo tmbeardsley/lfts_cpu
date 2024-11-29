@@ -26,7 +26,7 @@ Two methods of compiling the program are available:<br>
     <br>
     CMakeLists.txt specifies the required commands for CMake to create (and run) Makefiles, which create a 'build' directory and compile the program code as: lfts-cpu.<br><br>
     From the top directory, run: <br>
-    <b>cmake -B build</b><br>
+    <b>cmake -B build -DCMAKE_BUILD_TYPE=Release</b><br>
     <b>cmake --build build</b>
   </li>
 </ol>
