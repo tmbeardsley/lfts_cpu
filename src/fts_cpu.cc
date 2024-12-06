@@ -27,6 +27,8 @@ int main (int argc, char *argv[])
     } 
     string inputFile(argv[1]);
 
+    new double[10];
+
 
     // Set up threading in fftw (using OpenMP)
     #ifdef USE_OMP
