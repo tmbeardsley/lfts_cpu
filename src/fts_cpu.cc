@@ -27,11 +27,6 @@ int main (int argc, char *argv[])
     } 
     string inputFile(argv[1]);
 
-    double *moo = new double[10];
-    for (int i=0; i<10; i++) moo[i] = i;
-    cout << "i = " << moo[10%3] << endl;
-    moo = nullptr;
-
 
     // Set up threading in fftw (using OpenMP)
     #ifdef USE_OMP
