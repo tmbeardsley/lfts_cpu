@@ -1,4 +1,4 @@
-name: Build and Test
+name: Build and Test Serial
 
 on:
   push:
@@ -13,14 +13,13 @@ env:
   BUILD_TYPE: Release
 
 jobs:
-  build:
+  build-and-test:
     # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
 
-      # Install FFTW3 library
     - name: Install FFTW3
       run: sudo apt-get update && sudo apt-get install -y libfftw3-dev
 
@@ -32,8 +31,13 @@ jobs:
       # Build program with the given configuration
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
 
-    - name: Test
+    - name: Unit Testing
       working-directory: ${{github.workspace}}/build
       # Execute tests defined by the CMake configuration.
       run: ctest -C ${{env.BUILD_TYPE}}
 
+    - name: Install Valgrind
+      run: sudo apt-get install -y valgrind
+
+    - name: Run Valgrind memory check
+      run: valgrind --error-exitcode=1 --track-origins=yes --leak-check=full --errors-for-leak-kinds=all ${{github.workspace}}/build/lfts-cpu ${{github.workspace}}/tests/input_valgrind

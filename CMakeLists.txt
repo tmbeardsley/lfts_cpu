@@ -4,8 +4,8 @@ cmake_minimum_required(VERSION 3.14)
 # Define the project name.
 project(LFTS-CPU)
 
-# Set the C++ standard to C++14.
-set(CMAKE_CXX_STANDARD 14)
+# Set the C++ standard to C++17.
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
@@ -39,6 +39,9 @@ message(STATUS "GSL_INCLUDE_DIRS = ${GSL_INCLUDE_DIRS}")
 message(STATUS "GSL_LDFLAGS = ${GSL_LDFLAGS}")
 include_directories(${GSL_INCLUDE_DIRS})
 
+# Use find_package to find and check for the OpenMP library.
+find_package(OpenMP REQUIRED)
+
 # Use find_package to find and check for the FFTW3 library.
 # The REQUIRED keyword makes sure the build process stops if the library is not found.
 # Variables FFTW3_INCLUDE_DIRS and FFTW3_LIBRARIES are created here.
@@ -48,12 +51,26 @@ message(STATUS "FFTW3_LIBRARIES = ${FFTW3_LIBRARIES}")
 include_directories(${FFTW3_INCLUDE_DIRS})
 
 # Define the executable target "lfts-cpu" and specify "fts_cpu.cc" as the source file.
-add_executable(lfts-cpu ./src/fts_cpu.cc)
+add_executable(lfts-cpu ./src/fts_cpu.cc ./src/strFunc.cc ./src/langevin.cc ./src/step.cc ./src/diblock.cc ./src/anderson.cc ./src/lfts_simulation.cc ./src/lfts_params.cc)
 
 # Link the GSL libraries to the executable. This includes linking necessary runtime libraries found by pkg-config.
 target_link_libraries(lfts-cpu ${GSL_LDFLAGS})
+
+# Link the FFTW3 libraries to the executable. This includes linking necessary runtime libraries found by pkg-config.
 target_link_libraries(lfts-cpu ${FFTW3_LIBRARIES})
 
+
+######## OPTION TO COMPILE WITH OPENMP FOR FFTW3 ########
+option(USE_OMP "Include OpenMP for threads in fftw3" OFF)
+if (USE_OMP)
+  message(STATUS "USING OPENMP!")
+  # Link OpenMP flags and libraries to the executable.
+  target_compile_definitions(lfts-cpu PRIVATE USE_OMP)
+  target_link_libraries(lfts-cpu 
+    OpenMP::OpenMP_CXX
+    -lfftw3_omp
+  )
+endif()
 
 
 
@@ -74,6 +91,7 @@ target_link_libraries(
   fileIO_tests
   GTest::gtest_main
 )
+
 
 
 

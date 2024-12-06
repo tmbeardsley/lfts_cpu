@@ -10,14 +10,14 @@
 namespace file_IO {
 
     // Check whether a file exists
-    bool isValidFile(std::string fileName) {
+    inline bool isValidFile(std::string fileName) {
         if (fileName == "") return false;
         std::ifstream instream(fileName);
         return !(instream.fail());
     }
 
     // Read an array from file
-    void readArray(double *arr, std::string fileName, int n, int nIgnore=0) {
+    inline void readArray(double *arr, std::string fileName, int n, int nIgnore=0) {
         std::ifstream instream;
         instream.open(fileName);
         // Ignore first nIgnore lines that contain parameters
@@ -28,7 +28,7 @@ namespace file_IO {
     }
 
     // Save a host array to file
-    void saveArray(double *arr, std::string fileName, int n, bool append=false) {
+    inline void saveArray(double *arr, std::string fileName, int n, bool append=false) {
         std::ofstream outstream;
         if (append) outstream.open(fileName,std::ios_base::app);
         else outstream.open(fileName);

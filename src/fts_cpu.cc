@@ -9,17 +9,32 @@
 #include <iostream>
 #include "lfts_simulation.h"
 #include <chrono>
+#include <fftw3.h>
+
+#ifdef USE_OMP
+#include <omp.h>
+#endif
 
 using namespace std;
 
 int main (int argc, char *argv[])
 {
+
     // Get input file name from command-line argument
     if (argc != 2) {
-        cout << "Please supply a single input file name as a command-line argument." << endl << endl;
+        cout << "Please supply an input file name as first command-line argument." << endl << endl;
         exit(1);
-    }
+    } 
     string inputFile(argv[1]);
+
+
+    // Set up threading in fftw (using OpenMP)
+    #ifdef USE_OMP
+        fftw_init_threads();
+        fftw_plan_with_nthreads(omp_get_max_threads());
+        cout << "Using: " << omp_get_max_threads() << " threads for FFTs" << endl;
+    #endif
+
 
     // New lfts_simulation object with input file name specified
     lfts_simulation *lfts_sim = new lfts_simulation(inputFile);
@@ -46,5 +61,12 @@ int main (int argc, char *argv[])
     cout << lfts_sim->getH() << endl;
 
     delete lfts_sim;
+
+    // Clean up small amount of persistent fftw memory
+    #ifdef USE_OMP
+        fftw_cleanup_threads();
+    #endif
+    fftw_cleanup();
+
     return 0;
 }
