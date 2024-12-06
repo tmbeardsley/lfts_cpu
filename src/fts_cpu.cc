@@ -27,7 +27,8 @@ int main (int argc, char *argv[])
     } 
     string inputFile(argv[1]);
 
-    new double[10];
+    double *moo = new double[10];
+    double i = moo[10];
 
 
     // Set up threading in fftw (using OpenMP)
