@@ -40,4 +40,4 @@ jobs:
       run: sudo apt-get install -y valgrind
 
     - name: Run Valgrind memory check
-      run: valgrind --error-exitcode=1 --track-origins=yes --leak-check=full --errors-for-leak-kinds=all ${{github.workspace}}/build/lfts-cpu ${{github.workspace}}/tests/input_valgrind
+      run: valgrind --error-exitcode=1 --track-origins=yes --leak-check=full --errors-for-leak-kinds=all ${{github.workspace}}/build/lfts-cpu ${{github.workspace}}/tests/valgrind/input_valgrind
