@@ -46,9 +46,10 @@ jobs:
       # Suppression file added to ignore memory freed upon exit (related to fftw with OpenMP)
     - name: Run Valgrind memory check
       run: |
-        valgrind
-        --error-exitcode=1 
-        --track-origins=yes 
-        --leak-check=full 
-        --suppressions=${{github.workspace}}/tests/valgrind/valgrind.supp
-        ${{github.workspace}}/build/lfts-cpu ${{github.workspace}}/tests/valgrind/input_valgrind
+        valgrind \
+          --error-exitcode=1 \
+          --track-origins=yes \
+          --leak-check=full \
+          --suppressions=${{github.workspace}}/tests/valgrind/valgrind.supp \
+          ${{github.workspace}}/build/lfts-cpu \
+          ${{github.workspace}}/tests/valgrind/input_valgrind
