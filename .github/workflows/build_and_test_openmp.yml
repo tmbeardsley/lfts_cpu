@@ -1,4 +1,4 @@
-name: Build and Test Serial
+name: Build and Test OpenMP
 
 on:
   push:
@@ -46,9 +46,9 @@ jobs:
       # Suppression file added to ignore memory freed upon exit (related to fftw with OpenMP)
     - name: Run Valgrind memory check
       run: |
-        valgrind 
+        valgrind
         --error-exitcode=1 
         --track-origins=yes 
         --leak-check=full 
-        --suppressions=${{github.workspace}}/valgrind/valgrind.supp
+        --suppressions=${{github.workspace}}/tests/valgrind/valgrind.supp
         ${{github.workspace}}/build/lfts-cpu ${{github.workspace}}/tests/valgrind/input_valgrind
