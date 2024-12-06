@@ -12,26 +12,30 @@ env:
   # Can change the CMake build type here (e.g., Release, Debug)
   BUILD_TYPE: Release
 
+  # Enable 2 threads for OpenMP
+  NUM_OMP_THREADS: 2
+
 jobs:
-  build-and-test:
+  build-and-test-openmp:
     # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
 
+      # Install FFTW3 library
     - name: Install FFTW3
       run: sudo apt-get update && sudo apt-get install -y libfftw3-dev
 
     - name: Configure CMake
-      # Configure CMake in a 'build' subdirectory.
-      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+      # Configure CMake in a 'build' subdirectory. Turn on the option to enable OpenMP for fftw3.
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DUSE_OMP=on
 
     - name: Build
       # Build program with the given configuration
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
 
-    - name: Unit Testing
+    - name: Test
       working-directory: ${{github.workspace}}/build
       # Execute tests defined by the CMake configuration.
       run: ctest -C ${{env.BUILD_TYPE}}
@@ -39,11 +43,12 @@ jobs:
     - name: Install Valgrind
       run: sudo apt-get install -y valgrind
 
+      # Suppression file added to ignore memory freed upon exit (related to fftw with OpenMP)
     - name: Run Valgrind memory check
       run: |
         valgrind 
         --error-exitcode=1 
         --track-origins=yes 
         --leak-check=full 
-        --errors-for-leak-kinds=all 
+        --suppressions=${{github.workspace}}/valgrind/valgrind.supp
         ${{github.workspace}}/build/lfts-cpu ${{github.workspace}}/tests/valgrind/input_valgrind
