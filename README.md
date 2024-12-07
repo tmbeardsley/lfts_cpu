@@ -1,4 +1,5 @@
 ![Build Status](https://github.com/tmbeardsley/lfts_cpu/actions/workflows/build_and_test_serial.yml/badge.svg)
+![Build Status](https://github.com/tmbeardsley/lfts_cpu/actions/workflows/build_and_test_openmp.yml/badge.svg)
 # Langevin Field-Theoretic Simulation of Diblock Copolymers on CPUs
 
 | Lamellar | Cylindrical | Spherical | Gyroid | Fddd |
