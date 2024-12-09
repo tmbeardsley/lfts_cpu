@@ -20,17 +20,25 @@ Two methods of compiling the program are available:<br>
     <br>
     A simple bash script to create a 'build' directory containing the compiled program code: lfts-cpu.<br><br>
     On a Linux system, run the bash script from the top directory via:<br>
-    <b>sh comp.sh</b>
+    <b>bash comp.sh [USE_OMP]</b>
     <br><br>
   </li>
   <li><b>CMake</b>
     <br>
     CMakeLists.txt specifies the required commands for CMake to create (and run) Makefiles, which create a 'build' directory and compile the program code as: lfts-cpu.<br><br>
     From the top directory, run: <br>
-    <b>cmake -B build -DCMAKE_BUILD_TYPE=Release</b><br>
+    <b>cmake -B build -DCMAKE_BUILD_TYPE=Release [-DUSE_OMP=on]</b><br>
     <b>cmake --build build</b>
   </li>
 </ol>
+
+### 3a. Enabling threaded fast Fourier transforms
+The optional (as indicated by square brackets) USE_OMP flags compile the code so that threading is used in the fast Fourier transforms. <br><br>
+The number of threads being used is controlled by setting the environment variable, OMP_NUM_THREADS, before running the compiled executable. <br><br>
+<b>Linux shell:</b> <em>export OMP_NUM_THREADS=2</em>, sets the maximum number of threads to two. <br><br>
+<b>Windows shell:</b> <em>set OMP_NUM_THREADS=2</em>, sets a maximum of two threads. <br><br>
+The speedup gained from using multiple threads will be hardware and problem-size dependent and should be tested to ensure the additional computational resources are worth the attained speedup.
+
 
 
 ## 4. Running the program
