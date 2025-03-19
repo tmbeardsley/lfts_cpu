@@ -47,7 +47,7 @@ jobs:
       run: sudo apt-get install -y valgrind
 
       # Suppression file added to ignore memory freed upon exit (related to fftw with OpenMP)
-    - name: Run Valgrind memory check
+    - name: Run Valgrind memory check with suppressions for OpenMP
       run: |
         valgrind \
           --error-exitcode=1 \
