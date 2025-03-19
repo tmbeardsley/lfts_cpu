@@ -39,9 +39,6 @@ message(STATUS "GSL_INCLUDE_DIRS = ${GSL_INCLUDE_DIRS}")
 message(STATUS "GSL_LDFLAGS = ${GSL_LDFLAGS}")
 include_directories(${GSL_INCLUDE_DIRS})
 
-# Use find_package to find and check for the OpenMP library.
-find_package(OpenMP REQUIRED)
-
 # Use find_package to find and check for the FFTW3 library.
 # The REQUIRED keyword makes sure the build process stops if the library is not found.
 # Variables FFTW3_INCLUDE_DIRS and FFTW3_LIBRARIES are created here.
@@ -54,7 +51,7 @@ include_directories(${FFTW3_INCLUDE_DIRS})
 add_executable(lfts-cpu ./src/fts_cpu.cc ./src/strFunc.cc ./src/langevin.cc ./src/step.cc ./src/diblock.cc ./src/anderson.cc ./src/lfts_simulation.cc ./src/lfts_params.cc)
 
 # Link the GSL libraries to the executable. This includes linking necessary runtime libraries found by pkg-config.
-target_link_libraries(lfts-cpu ${GSL_LDFLAGS})
+target_link_libraries(lfts-cpu GSL::gsl GSL::gslcblas)
 
 # Link the FFTW3 libraries to the executable. This includes linking necessary runtime libraries found by pkg-config.
 target_link_libraries(lfts-cpu ${FFTW3_LIBRARIES})
@@ -64,6 +61,8 @@ target_link_libraries(lfts-cpu ${FFTW3_LIBRARIES})
 option(USE_OMP "Include OpenMP for threads in fftw3" OFF)
 if (USE_OMP)
   message(STATUS "USING OPENMP!")
+  # Use find_package to find and check for the OpenMP library.
+  find_package(OpenMP REQUIRED)
   # Link OpenMP flags and libraries to the executable.
   target_compile_definitions(lfts-cpu PRIVATE USE_OMP)
   target_link_libraries(lfts-cpu 
