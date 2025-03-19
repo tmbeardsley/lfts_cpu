@@ -11,9 +11,9 @@
    fun:GOMP_parallel
    fun:fftw_spawn_loop
    obj:/usr/lib/x86_64-linux-gnu/libfftw3_omp.so.3.6.10
+   fun:*
    fun:fftw_measure_execution_time
    obj:/usr/lib/x86_64-linux-gnu/libfftw3.so.3.6.10
-   obj:/usr/lib/x86_64-linux-gnu/libfftw3.so.3.6.10
-   obj:/usr/lib/x86_64-linux-gnu/libfftw3.so.3.6.10
+   fun:*
    fun:fftw_mkplan_d
 }
