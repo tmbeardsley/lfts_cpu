@@ -27,6 +27,9 @@ jobs:
     - name: Install FFTW3
       run: sudo apt-get update && sudo apt-get install -y libfftw3-dev
 
+    - name: Install GSL
+      run: sudo apt-get install -y libgsl-dev
+
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. Turn on the option to enable OpenMP for fftw3.
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DUSE_OMP=on
