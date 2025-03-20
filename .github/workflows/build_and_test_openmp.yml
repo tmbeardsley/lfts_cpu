@@ -54,6 +54,8 @@ jobs:
           --error-exitcode=1 \
           --track-origins=yes \
           --leak-check=full \
+          --gen-suppressions=all \
+          --verbose \
           --suppressions=${{github.workspace}}/tests/valgrind/valgrind.supp \
           ${{github.workspace}}/build/lfts-cpu \
           ${{github.workspace}}/tests/valgrind/input_valgrind
