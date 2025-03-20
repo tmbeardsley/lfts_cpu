@@ -27,6 +27,9 @@ jobs:
     - name: Install FFTW3
       run: sudo apt-get update && sudo apt-get install -y libfftw3-dev
 
+    - name: Install GSL
+      run: sudo apt-get install -y libgsl-dev
+
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. Turn on the option to enable OpenMP for fftw3.
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DUSE_OMP=on
@@ -44,12 +47,16 @@ jobs:
       run: sudo apt-get install -y valgrind
 
       # Suppression file added to ignore memory freed upon exit (related to fftw with OpenMP)
-    - name: Run Valgrind memory check
+      # valgrind --gen-suppressions=all --leak-check=full --show-leak-kinds=all --verbose ${{github.workspace}}/build/lfts-cpu ${{github.workspace}}/tests/valgrind/input_valgrind
+    - name: Run Valgrind memory check with suppressions for OpenMP
       run: |
         valgrind \
           --error-exitcode=1 \
           --track-origins=yes \
           --leak-check=full \
+          --gen-suppressions=all \
+          --verbose \
           --suppressions=${{github.workspace}}/tests/valgrind/valgrind.supp \
           ${{github.workspace}}/build/lfts-cpu \
           ${{github.workspace}}/tests/valgrind/input_valgrind
+        
